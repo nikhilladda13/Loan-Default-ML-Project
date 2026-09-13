@@ -1,0 +1,17 @@
+import streamlit as st
+
+st.title("Business Problem")
+st.header("Problem Statement")
+
+st.write("""
+The project focuses on predicting credit risk for loan applicants.
+The objective is to use customer and loan-related information to identify
+whether an applicant represents a good or bad credit risk.
+""")
+st.header("Analytics Objective")
+
+st.write("""
+The analytics objective is to build a machine learning model that can predict
+the credit risk category of a loan applicant using the available applicant
+and loan-related features.
+""")
