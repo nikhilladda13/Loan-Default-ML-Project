@@ -1,0 +1,39 @@
+import streamlit as st
+
+st.title("Loan Default Prediction")
+import joblib
+
+model = joblib.load("models/loan_default_model.pkl")
+st.header("Applicant Information")
+
+attribute1 = st.selectbox(
+    "Checking Account Status",
+    ["A11", "A12", "A13", "A14"]
+)
+
+attribute2 = st.number_input(
+    "Loan Duration (months)",
+    min_value=1,
+    max_value=72,
+    value=12
+)
+
+attribute3 = st.selectbox(
+    "Credit History",
+    ["A30", "A31", "A32", "A33", "A34"]
+)
+
+attribute5 = st.number_input(
+    "Credit Amount",
+    min_value=1,
+    value=2000
+)
+
+attribute13 = st.number_input(
+    "Age (years)",
+    min_value=18,
+    max_value=100,
+    value=30
+)
+if st.button("Predict"):
+    st.write("Prediction button is working.")
