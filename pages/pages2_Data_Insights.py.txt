@@ -1,0 +1,49 @@
+import streamlit as st
+
+st.title("Data Insights")
+st.header("Dataset Overview")
+
+st.write("Dataset: UCI Statlog German Credit Data")
+st.write("Number of observations: 1,000")
+st.write("Number of features: 20")
+st.write("Target: Credit Risk")
+import pandas as pd
+
+df = pd.read_csv("data/german_credit_clean.csv")
+
+st.subheader("Dataset Preview")
+st.dataframe(df.head())
+st.subheader("Key Statistics")
+
+st.write("Number of rows:", df.shape[0])
+st.write("Number of columns:", df.shape[1])
+st.subheader("Credit Risk Distribution")
+
+risk_counts = df.iloc[:, -1].value_counts()
+
+st.bar_chart(risk_counts)
+st.subheader("Loan Duration Distribution")
+
+st.bar_chart(df["feature_2"].value_counts().sort_index())
+st.subheader("Checking Account Status Distribution")
+
+feature = df.columns[0]
+
+st.bar_chart(df[feature].value_counts())
+st.subheader("Business Insights")
+
+st.write("""
+The visualizations help understand the distribution of credit risk and
+loan-related characteristics in the dataset. These patterns can be used
+as an initial understanding of customer risk before applying the machine
+learning model.
+""")
+st.subheader("Model Performance")
+
+st.write("The selected Logistic Regression model achieved:")
+
+st.write("Accuracy: 75.0%")
+st.write("Precision: 55.8%")
+st.write("Recall: 80.0%")
+st.write("F1 Score: 65.8%")
+st.write("ROC-AUC: 80.6%")
