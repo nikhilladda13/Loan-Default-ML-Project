@@ -4,6 +4,10 @@
 ## 1. Project Overview
 
 This project develops a machine learning based loan default risk prediction system. The system uses applicant characteristics to classify an application as a comparatively good or bad credit risk and provides a business recommendation through an interactive Streamlit application.
+## Project Links
+
+GitHub Repository:https://github.com/nikhilladda13/Loan-Default-ML-Project.git
+Live Streamlit App:https://loan-default-ml-project-i7l5bde7etpzpu7rvxogy8.streamlit.app/
 
 ## 2. Business Problem
 
