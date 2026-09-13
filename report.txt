@@ -1,0 +1,196 @@
+
+PROJECT REPORT
+LOAN DEFAULT RISK PREDICTION USING MACHINE LEARNING
+
+Submitted as part of the Business Analytics / Machine Learning Project
+
+1. EXECUTIVE SUMMARY
+
+Loan default is a major risk for banks and financial institutions. Before approving a loan, lenders need to estimate the probability that a borrower will fail to meet repayment obligations. This project develops a machine learning based loan default risk prediction system using the Statlog German Credit dataset from the UCI Machine Learning Repository.
+
+The project follows the complete business analytics lifecycle: business problem identification, dataset selection, data preparation, exploratory analysis, model development, evaluation, prediction, business interpretation, Streamlit deployment and GitHub documentation.
+
+Two classification algorithms are implemented: Logistic Regression and Random Forest. The training script automatically evaluates both models using Accuracy, Precision, Recall, F1-score and ROC-AUC and selects the strongest model based on ROC-AUC, with recall used as a secondary business consideration.
+
+2. BUSINESS PROBLEM
+
+A financial institution faces two major credit-risk errors:
+
+• Approving an applicant who subsequently defaults.
+• Rejecting an applicant who would have repaid successfully.
+
+The first error can directly create financial losses and collection costs. The second can reduce the institution's lending opportunities and customer acquisition.
+
+The proposed system provides an analytical risk estimate that can be used as an additional input to a structured underwriting process.
+
+3. OBJECTIVES
+
+The main objectives are:
+
+1. Identify a real-world loan default classification problem.
+2. Use a reliable public credit-risk dataset.
+3. Clean and prepare the dataset using Python.
+4. Perform exploratory data analysis.
+5. Build and compare suitable classification models.
+6. Evaluate model performance using multiple metrics.
+7. Save the best trained model.
+8. Build an interactive Streamlit prediction application.
+9. Convert model predictions into business recommendations.
+10. Prepare the project for GitHub and cloud deployment.
+
+4. DATASET
+
+The project uses the UCI Statlog (German Credit Data), dataset ID 144. The UCI repository states that the dataset contains 1,000 instances and 20 features and classifies people as good or bad credit risks.
+
+Source:
+UCI Machine Learning Repository
+https://archive.ics.uci.edu/dataset/144/statlog+german+credit+data
+
+The dataset contains categorical and integer attributes covering areas such as checking-account status, credit history, loan duration, credit amount, savings, employment, installment rate, housing, age, existing credits and telephone/foreign-worker information.
+
+5. DATA PREPARATION
+
+The following preparation steps are implemented:
+
+• Dataset imported through the ucimlrepo package.
+• Feature and target data separated.
+• Target converted into a binary classification variable.
+• Numeric variables processed using median imputation and standardization.
+• Categorical variables processed using most-frequent imputation and one-hot encoding.
+• Training and testing data split using an 80:20 stratified split.
+• All preprocessing is included inside the machine learning pipeline to reduce the risk of inconsistent transformations between training and prediction.
+
+6. EXPLORATORY DATA ANALYSIS
+
+The notebook included with the project performs:
+
+• Dataset shape and data-type inspection.
+• Target-class distribution analysis.
+• Numerical summary statistics.
+• Credit amount distribution.
+• Loan duration analysis.
+• Age analysis.
+• Credit history and checking-account analysis.
+• Relationship between important applicant characteristics and the target.
+
+The EDA is intended to identify patterns that may help explain why some applications are classified as higher credit risk.
+
+7. MACHINE LEARNING METHODOLOGY
+
+Two models are developed.
+
+7.1 Logistic Regression
+
+Logistic Regression is used as an interpretable baseline classification algorithm. It estimates the probability of the binary target class and is appropriate for a credit-risk classification problem.
+
+7.2 Random Forest
+
+Random Forest is used as a non-linear ensemble model. It combines multiple decision trees and can capture interactions between applicant characteristics that a linear model may not capture.
+
+8. MODEL EVALUATION
+
+The following metrics are calculated:
+
+Accuracy = proportion of all correctly classified applications.
+
+Precision = proportion of predicted defaults that are actual defaults.
+
+Recall = proportion of actual defaults that the model identifies.
+
+F1-score = harmonic mean of precision and recall.
+
+ROC-AUC = ability of the model to rank default-risk cases above non-default cases across thresholds.
+
+For credit-risk applications, recall is particularly important because missing a genuinely high-risk borrower can have a greater financial consequence than unnecessarily flagging a lower-risk borrower.
+
+The actual numerical results are generated by `train_model.py` and saved to `models/model_metrics.json`. This approach ensures that the final report uses the actual model run rather than unsupported or fabricated performance numbers.
+
+9. BUSINESS INTERPRETATION
+
+The application translates the probability into three practical risk bands:
+
+• Lower Risk: comparatively lower predicted probability of default.
+• Medium Risk: additional underwriting review recommended.
+• High Risk: enhanced credit assessment recommended.
+
+For high-risk applications, suggested actions include verifying income and obligations, reviewing repayment capacity, considering a conservative credit amount, and conducting enhanced underwriting.
+
+For medium-risk applications, the institution can perform additional affordability and documentation checks.
+
+For lower-risk applications, the application can continue through the normal underwriting process subject to the institution's policies.
+
+10. STREAMLIT APPLICATION
+
+The Streamlit application provides an interactive interface where the user enters the applicant's characteristics.
+
+The application then displays:
+
+• Default probability.
+• Risk classification.
+• Model output.
+• Business recommendation.
+• Model information.
+
+The application is designed as a decision-support prototype rather than an automated approval system.
+
+11. DEPLOYMENT PLAN
+
+The project is structured for deployment through Streamlit Community Cloud.
+
+Steps:
+
+1. Create a GitHub repository.
+2. Upload app.py, train_model.py, requirements.txt, notebook, README and model files.
+3. Run train_model.py locally before deployment so that the model file and metrics file are generated.
+4. Connect the GitHub repository to Streamlit Community Cloud.
+5. Select app.py as the application entry point.
+6. Deploy and test the public URL.
+
+12. ETHICAL AND BUSINESS CONSIDERATIONS
+
+Credit decisions are high-impact decisions. A production system should not rely solely on this academic model.
+
+Before real-world use, an institution should perform:
+
+• Regulatory and legal review.
+• Fairness and bias testing.
+• Model explainability.
+• Data-quality monitoring.
+• Model drift monitoring.
+• Human review.
+• Threshold and cost-sensitive optimization.
+• Security and privacy controls.
+
+The historical dataset is relatively small and old, so model performance should not be interpreted as evidence of current lending performance.
+
+13. LIMITATIONS
+
+The dataset contains only 1,000 observations and represents historical credit applications. Economic conditions, lending products and customer behavior can change over time.
+
+The model therefore demonstrates the machine learning workflow rather than providing a production-ready credit decision engine.
+
+The UCI dataset also provides a cost matrix, highlighting that different types of classification errors can have different business consequences. A future version should explicitly optimize for business cost rather than selecting a model only by ROC-AUC.
+
+14. FUTURE SCOPE
+
+Future improvements can include:
+
+• XGBoost or other gradient boosting algorithms.
+• Hyperparameter tuning.
+• Cross-validation.
+• Probability calibration.
+• Cost-sensitive threshold optimization.
+• SHAP-based explainability.
+• Fairness analysis.
+• Model monitoring.
+• Integration with a bank's loan-origination system.
+• Real-time risk scoring.
+• Customer-level explanation of major risk drivers.
+
+15. CONCLUSION
+
+This project demonstrates how machine learning can be applied to a practical business problem in lending. A public credit-risk dataset was selected, prepared and analyzed. Multiple classification algorithms were developed and evaluated using business-relevant metrics. The selected model is saved and exposed through a Streamlit application that converts the prediction into an actionable risk classification and business recommendation.
+
+The project therefore completes the required flow:
+
+Business Problem → Dataset → Data Preparation → ML Model → Evaluation → Prediction → Business Recommendation → Streamlit App → GitHub → Deployment.
